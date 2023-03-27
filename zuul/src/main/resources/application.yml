@@ -1,0 +1,32 @@
+server:
+  port: 9010
+zuul:
+  routes:
+    my-product-service: /my-product-service/**    # 加自定义映射路由
+#  ignored-services: 'my-consumer' # 排除基于Eureka的全部自动映射路由的y-consumer路由
+#  ignored-services: '*'     # 排除基于Eureka的全部自动映射路由
+  prefix: /api    # 添加自定义前缀
+  sensitive-headers: Cookie,Set-Cookie
+hystrix:
+  command:
+    my-product-service:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000
+my-product-service:
+  ribbon:
+    ReadTimeOut: 15000
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+logging:
+  level:
+    com.netflix: info
+

@@ -1,0 +1,23 @@
+server:
+  port: 9011
+zuul:
+  routes:
+    other-service:
+      path: /other-service/**
+      url: http://localhost:8000
+#ribbon:
+#  eureka:
+#    enabled: false
+#my-product-service:
+#  ribbon:
+#    listOfServers: http://localhost:8000
+
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

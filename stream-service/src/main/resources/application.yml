@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: message-send-service
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: message-receive-service # 输出通道output映射的topic为message-receive-service
+          content-type: application/json # 发送消息的格式为JSON
+        myChannelOut:
+          destination: custom-message-receive-service # 输出通道myChannelOut映射的topic为custom-message-receive-service
+          content-type: application/json # 发送消息的格式为JSON
+      kafka:
+        binder:
+          zk-nodes: localhost # kafka的位置为本地
+          brokers: localhost # zookeeper的位置为本地
+
+server:
+  port: 9020

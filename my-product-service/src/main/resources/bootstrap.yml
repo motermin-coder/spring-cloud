@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: my-product-service
+#  profiles:
+#    active:
+#      default
+#  cloud:
+#    config:
+#      enabled: true

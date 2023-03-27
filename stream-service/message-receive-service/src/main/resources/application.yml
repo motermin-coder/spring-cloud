@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: message-receive-service
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: message-receive-service # 将input通道的映射到message-receive-service队列
+          content-type: application/json # 接收消息类型
+          group: messageGroup # 定义消费组名称
+        myChannelIn:
+          destination: custom-message-receive-service # 将myChannelIn通道的映射到custom-message-receive-service队列
+          content-type: application/json # 接收消息类型
+          group: customMessageGroup # 定义消费组名称
+      kafka:
+        binder:
+          zk-nodes: localhost # kafka的位置为本地
+          brokers: localhost # zookeeper的位置为本地
+server:
+  port: 9030
